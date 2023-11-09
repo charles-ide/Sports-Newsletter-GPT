@@ -7,6 +7,9 @@ import requests
 from bs4 import BeautifulSoup
 import textwrap
 
+
+
+
 def get_page_content(url):
     try:
         response = requests.get(url)

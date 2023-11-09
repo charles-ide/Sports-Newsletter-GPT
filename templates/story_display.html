@@ -19,6 +19,35 @@
             </div>
         </div>
     </section>
+    
+    <form action="{{ url_for('delete_all_rows') }}" method="post">
+        <button type="submit">Delete All Rows</button>
+    </form>
+    <form action="{{ url_for('summarize_results') }}" method="post">
+        <button type="submit">Summarize Story Results</button>
+    </form>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" name="section_url" id="section_url" type="text" placeholder="Enter Section URL">
+                            </div>
+                            <div class="control">
+                                <button class="button is-info">
+                                    Scrape Stories
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="section">
         <div class="container">
             <div class="columns">
