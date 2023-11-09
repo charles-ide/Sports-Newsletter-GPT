@@ -87,20 +87,27 @@ def generate_email_body():
         stories = Story.query.all()
     
     story_text = [story.text for story in stories]
-    print(len(story_text))
-    print(story_text[0])
-    text_summary = summarize_text(story_text[0])
+
+    text_summary_full = ""
+    n=0
+    for story_body in story_text: # Rename variables
+        n+=1
+        print(str(n) + "\n\n")
+        text_summary = summarize_text(story_body) + "\n"
+        text_summary_full += str(text_summary) 
+        text_summary_full += "\n\n"
 
 
-    return text_summary
+    return text_summary_full
                   
 
 
 
 if __name__ == "__main__":
-    
     email_body = generate_email_body()
     print(email_body)
     mailing_list = query_mailing_list()
+    print(mailing_list)
     subject = generate_email_subject()
+    print(subject)
     send_email(email_body, mailing_list, subject)
