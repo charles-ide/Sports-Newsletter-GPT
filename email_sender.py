@@ -97,7 +97,6 @@ def generate_email_body():
         text_summary_full += str(text_summary) 
         text_summary_full += "\n\n"
 
-
     return text_summary_full
                   
 
@@ -105,9 +104,6 @@ def generate_email_body():
 
 if __name__ == "__main__":
     email_body = generate_email_body()
-    print(email_body)
     mailing_list = query_mailing_list()
-    print(mailing_list)
     subject = generate_email_subject()
-    print(subject)
     send_email(email_body, mailing_list, subject)

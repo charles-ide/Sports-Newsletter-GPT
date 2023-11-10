@@ -59,24 +59,3 @@ def summarize_results():
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
-
-# Graveyard - delete later b/c graveyards are bad
-'''
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/process_url', methods=['POST'])
-def process_url_route():
-    if request.method == 'POST':
-        url = request.form['url']
-        story_dict = get_page_content(url)
-
-        new_story_obj = Story(url=story_dict['url'], title=story_dict['title'], text=story_dict['text'])
-
-        db.session.add(new_story_obj)
-        db.session.commit()
-
-        return render_template('result.html', url=url, page_content=story_dict['text'])
-    return render_template('index.html')
-'''
