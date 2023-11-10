@@ -11,6 +11,20 @@ from models import db, Story
 from flask import Flask
 
 
+def delete_existing_stories():
+    # Delete all rows from the story database
+    app = Flask(__name__)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
+    with app.app_context():
+    
+        db.session.query(Story).delete()
+        db.session.commit()
+
+
 def get_page_content(url):
     try:
         response = requests.get(url)
