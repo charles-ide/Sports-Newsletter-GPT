@@ -1,6 +1,6 @@
 '''
 (c) 2023 Charles Ide
-In this module I will experiment with passing an article's text and title to ChatGPT
+This module is used to access OpenAI's API
 '''
 
 import openai

@@ -1,6 +1,7 @@
 '''
 (c) Charles Ide, November 6 2023
-This file will serve as the entrypoint for our Newsletter GPT application
+This is a legacy file mainly for backend and learning purposes. It generates a page that displays
+the stories in our database.
 '''
 from flask import Flask, render_template, request, redirect, url_for
 from url_processor import get_page_content
@@ -39,11 +40,6 @@ def index():
     
     return render_template('story_display.html', story_list = story_list)
 
-@app.route('/scrape_stories', methods=['POST'])
-def scrape_stories():
-    # Write code to scrape multiple stories
-
-    return redirect(url_for('index'))
 
 @app.route('/delete_all_rows', methods=['POST'])
 def delete_all_rows():

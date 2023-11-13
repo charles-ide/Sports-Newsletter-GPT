@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
 
 # Clear out our DB of existing stories
 # TODO: Attach a date column to our DB and just summarize stories from that day. This way we can save old newsletters
-delete_existing_stories()
+delete_existing_stories(app)
 
 # Scrape and save today's top stories
 story_urls = scrape_stories()
