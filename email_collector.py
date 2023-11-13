@@ -53,4 +53,4 @@ def success():
     return render_template('email_submitted.html', emails=emails)
 
 if __name__ == '__main__':
-    app.run(port = 8000, debug=True)
+    app.run(port = 8080)
