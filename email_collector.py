@@ -1,21 +1,18 @@
 '''
 (c) 2023, Charles Ide
-This module contains code to collect emails from a central landing page and store them in our SQLite database
+This module contains code that operates our email newsletter landing page.
+It is used to collect emails entered in the central landing page and store them in our SQLite database
 '''
-
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from models import Email, db
 from email_sender import send_email
 
+# Configure the  app and database
 app = Flask(__name__)
-
-# Configure the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# Initialize the database
 db.init_app(app)
 
 

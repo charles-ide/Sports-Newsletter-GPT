@@ -6,7 +6,8 @@ In this module I will experiment with passing an article's text and title to Cha
 import openai
 import os
 
-# Retrieve your API key from an environment variable
+# A function that takes the text of an article and returns a ChatGPT summary
+# TODO: Refactor our prompt engineering into a separate module
 def summarize_text(article_text):
     openai.api_key = os.environ.get("OPENAI_API_KEY")
 
