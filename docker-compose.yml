@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  email_collector:
+    image: email_collector_image
+    ports:
+      - "8000:8000"
+    volumes:
+      - my_database_volume:/./instance/my_database.db
+    env_file:
+      - ./env_file.txt
+
+volumes:
+  my_database_volume:
