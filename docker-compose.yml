@@ -2,11 +2,26 @@ version: '3'
 
 services:
   email_collector:
+    build:
+      context: .
+      dockerfile: Dockerfile_email_collector
     image: email_collector_image
     ports:
       - "8000:8000"
     volumes:
-      - my_database_volume:/./instance/my_database.db
+      - my_database_volume:/instance/container_data
+    env_file:
+      - ./env_file.txt
+  
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile_main
+    image: main_image
+    ports:
+      - "4000:4000"
+    volumes:
+      - my_database_volume:/instance/container_data
     env_file:
       - ./env_file.txt
 

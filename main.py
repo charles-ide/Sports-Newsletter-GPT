@@ -9,17 +9,21 @@ This script is meant to be executed daily to send out the newsletter. It perform
 from url_processor import delete_existing_stories, get_page_content, save_stories, scrape_stories
 from email_sender import generate_email_body, generate_email_subject, query_mailing_list, send_email
 from flask import Flask
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
 
 # Clear out our DB of existing stories
 # TODO: Attach a date column to our DB and just summarize stories from that day. This way we can save old newsletters
 delete_existing_stories(app)
+print("Cleared DB")
 
 # Scrape and save today's top stories
 story_urls = scrape_stories()
-save_stories(story_urls)
+print("Scraped stories")
+save_stories(story_urls, app)
+print("Saved Stories")
 
 # Generate and send our daily newsletter to our recipients
 email_body = generate_email_body(app)
