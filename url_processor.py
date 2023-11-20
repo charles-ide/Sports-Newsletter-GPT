@@ -12,7 +12,6 @@ from flask import Flask
 
 # A function to delete all rows from the story database
 def delete_existing_stories(app):    
-    db.init_app(app)
     with app.app_context():
         db.session.query(Story).delete()
         db.session.commit()
@@ -28,7 +27,7 @@ def scrape_stories():
 
         # Extract title of story
         soup_list = soup.find('div', class_="PageList-items")
-        promo_divs = soup_list.find_all('div', class_='PagePromo-title')
+        promo_divs = soup_list.find_all('h3', class_='PagePromo-title')
         for promo_div in promo_divs:
             # Extract links from <a> tags within the found <div> tag
             links = [a['href'] for a in promo_div.find_all('a')]
@@ -47,7 +46,7 @@ def get_page_content(url):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Extract title of story
-        title_div = soup.find('h1', class_='Page-headline')        
+        title_div = soup.find('h1', class_='Page-headline')
         if title_div:
             title = title_div.get_text(strip=True)
         else:
@@ -72,9 +71,7 @@ def get_page_content(url):
         return f"Error: {e}"
     
 # A function to save scraped story content to our app database
-def save_stories(story_urls, app):
-    db.init_app(app)
-    
+def save_stories(story_urls, app):    
     with app.app_context():
         db.create_all()
         for url in story_urls:
@@ -88,8 +85,11 @@ def save_stories(story_urls, app):
 
 if __name__ == "__main__":
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
-    
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/my_db' #'sqlite:///my_database.db'
+    db.init_app(app)
+
+    delete_existing_stories(app)
     story_urls = scrape_stories()
+    print(story_urls)
     save_stories(story_urls, app)
     print("Saved")

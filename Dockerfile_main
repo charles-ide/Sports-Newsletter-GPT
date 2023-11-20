@@ -16,4 +16,4 @@ EXPOSE 4000
 ENV NAME World
 
 # Run app.py when the container launches
-CMD ["python", "main.py"]
+CMD ["crond", "-f"]

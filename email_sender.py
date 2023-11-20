@@ -22,8 +22,6 @@ def generate_email_subject():
 
 # A function to query our email mailing list stored in our database
 def query_mailing_list(app):
-    db.init_app(app)
-    
     with app.app_context():
         emails = Email.query.all()
 
@@ -33,9 +31,7 @@ def query_mailing_list(app):
 
 # A function that generates our email body based on saved story text
 # TODO: Break this into functions that return our story body list and that summarize our test
-def generate_email_body(app):
-    db.init_app(app)
-    
+def generate_email_body(app):    
     # Query all rows from the Email table
     with app.app_context():
         stories = Story.query.all()
