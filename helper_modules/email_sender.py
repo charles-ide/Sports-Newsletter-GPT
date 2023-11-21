@@ -4,14 +4,15 @@ This module contains functions that generate email contents and send emails to a
 mailing list.
 '''
 from datetime import datetime
+import os
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask import Flask
-import os
 
-from models import db, Email, Story
-from gpt_summary import summarize_text
+from helper_modules.models import db, Email, Story
+from helper_modules.gpt_summary import summarize_text
 
 # A function to generate the email subject based on today's date
 def generate_email_subject():

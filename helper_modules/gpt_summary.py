@@ -3,8 +3,9 @@
 This module is used to access OpenAI's API
 '''
 
-import openai
 import os
+
+import openai
 
 # A function that takes the text of an article and returns a ChatGPT summary
 # TODO: Refactor our prompt engineering into a separate module

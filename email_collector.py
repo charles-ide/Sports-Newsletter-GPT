@@ -3,12 +3,13 @@
 This module contains code that operates our email newsletter landing page.
 It is used to collect emails entered in the central landing page and store them in our SQLite database
 '''
+import os
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+
 from helper_modules.models import Email, db
 from helper_modules.email_sender import send_email
-import os
 
 # Configure the  app and database
 app = Flask(__name__)

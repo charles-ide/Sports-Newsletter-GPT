@@ -3,11 +3,12 @@
 This file will be used to process the page contents of a specified URL in our web app
 '''
 
-import requests
 from bs4 import BeautifulSoup
-import textwrap
-from models import db, Story
 from flask import Flask
+import requests
+import textwrap
+
+from helper_modules.models import db, Story
 
 
 # A function to delete all rows from the story database

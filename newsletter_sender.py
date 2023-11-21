@@ -5,12 +5,13 @@ This script is meant to be executed daily to send out the newsletter. It perform
 2. Generate an email based on GPT summaries of that day's top stories
 3. Send the email out to our mailing list
 '''
+import os
+
+from flask import Flask
 
 from helper_modules.url_processor import delete_existing_stories, get_page_content, save_stories, scrape_stories
 from helper_modules.email_sender import generate_email_body, generate_email_subject, query_mailing_list, send_email
-from flask import Flask
 from helper_modules.models import db
-import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("AMAZON_DB_PATH")
