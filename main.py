@@ -13,7 +13,7 @@ from models import db
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("AMAZON_DB_PATH")
 db.init_app(app)
 
 # Clear out our DB of existing stories

@@ -12,7 +12,7 @@ import os
 
 # Configure the  app and database
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("AMAZON_DB_PATH")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -31,7 +31,6 @@ def index():
 def submit():
     if request.method == 'POST':
         email_address = request.form['email']
-
         # Check if the email is not already in the database
         if not Email.query.filter_by(address=email_address).first():
             # Add the email to the database
@@ -54,4 +53,4 @@ def success():
     return render_template('email_submitted.html', emails=emails)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port = 8000, debug=False)
+    app.run(host="0.0.0.0", port = 8000, debug=True)

@@ -85,10 +85,10 @@ def save_stories(story_urls, app):
 
 if __name__ == "__main__":
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/my_db' #'sqlite:///my_database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
     db.init_app(app)
 
-    delete_existing_stories(app)
+    #delete_existing_stories(app)
     story_urls = scrape_stories()
     print(story_urls)
     save_stories(story_urls, app)

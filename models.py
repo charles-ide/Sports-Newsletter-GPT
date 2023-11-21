@@ -10,9 +10,9 @@ db = SQLAlchemy()
 # A class to store news stories
 class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(500))
-    title = db.Column(db.String(500))
-    text = db.Column(db.String(100000), nullable=False)
+    url = db.Column(db.String(300))
+    title = db.Column(db.String(300))
+    text = db.Column(db.TEXT, nullable=False)
 
 # A class to store email addressess of mailing list members
 class Email(db.Model):
