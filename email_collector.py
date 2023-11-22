@@ -6,14 +6,13 @@ It is used to collect emails entered in the central landing page and store them 
 import os
 
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 
 from helper_modules.models import Email, db
 from helper_modules.email_sender import send_email
 
 # Configure the  app and database
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:databasepw@database-1.cr3cokd1xojz.us-east-1.rds.amazonaws.com/GPT_DB'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 

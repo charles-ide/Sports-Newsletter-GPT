@@ -9,12 +9,13 @@ import os
 
 from flask import Flask
 
-from helper_modules.url_processor import delete_existing_stories, get_page_content, save_stories, scrape_stories
+from helper_modules.url_processor import get_page_content, scrape_stories
 from helper_modules.email_sender import generate_email_body, generate_email_subject, query_mailing_list, send_email
 from helper_modules.models import db
+from helper_modules.db_management import delete_existing_stories, save_stories
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("AMAZON_DB_PATH")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
 db.init_app(app)
 
 # Clear out our DB of existing stories

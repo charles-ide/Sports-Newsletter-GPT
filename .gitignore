@@ -1,3 +1,4 @@
 env_file.txt
 .venv
 gpt-key-pair.pem
+load_env.sh

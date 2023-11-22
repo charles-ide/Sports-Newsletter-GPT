@@ -4,18 +4,8 @@ This file will be used to process the page contents of a specified URL in our we
 '''
 
 from bs4 import BeautifulSoup
-from flask import Flask
 import requests
 import textwrap
-
-from helper_modules.models import db, Story
-
-
-# A function to delete all rows from the story database
-def delete_existing_stories(app):    
-    with app.app_context():
-        db.session.query(Story).delete()
-        db.session.commit()
 
 
 # A function to scrape the top 5 story URLs off of AP Sports Headlines
@@ -71,26 +61,10 @@ def get_page_content(url):
     except requests.exceptions.RequestException as e:
         return f"Error: {e}"
     
-# A function to save scraped story content to our app database
-def save_stories(story_urls, app):    
-    with app.app_context():
-        db.create_all()
-        for url in story_urls:
-            story_dict = get_page_content(url)
-            new_story_obj = Story(url=story_dict['url'], title=story_dict['title'], text=story_dict['text'])
-
-            db.session.add(new_story_obj)
-            db.session.commit()    
 
 
 
 if __name__ == "__main__":
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
-    db.init_app(app)
-
     #delete_existing_stories(app)
     story_urls = scrape_stories()
     print(story_urls)
-    save_stories(story_urls, app)
-    print("Saved")
