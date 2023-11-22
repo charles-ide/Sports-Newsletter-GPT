@@ -14,3 +14,6 @@ The Sports Newsletter Generator is a Flask application that leverages AP Sports 
 - **Daily Newsletter:** The application retrieves top sporting headlines from AP Sports News and uses the OpenAI API to generate a concise and engaging summary. Subscribers receive this newsletter in their email inbox each morning.
 
 - **Automated Email Sending:** The sending of the daily newsletter is automated and scheduled to run at 6am daily, ensuring timely delivery to subscribers.
+
+## Source Credit
+- News data is pulled from the [NewsData API](https://newsdata.io/documentation)

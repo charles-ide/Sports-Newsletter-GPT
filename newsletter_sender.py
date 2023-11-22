@@ -12,7 +12,7 @@ from flask import Flask
 from helper_modules.url_processor import get_page_content, scrape_stories
 from helper_modules.email_sender import generate_email_body, generate_email_subject, query_mailing_list, send_email
 from helper_modules.models import db
-from helper_modules.db_management import delete_existing_stories, save_stories
+from helper_modules.db_management import delete_existing_stories, save_stories_from_urls
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
@@ -26,7 +26,7 @@ print("Cleared DB")
 # Scrape and save today's top stories
 story_urls = scrape_stories()
 print("Scraped stories")
-save_stories(story_urls, app)
+save_stories_from_urls(story_urls, app)
 print("Saved Stories")
 
 # Generate and send our daily newsletter to our recipients

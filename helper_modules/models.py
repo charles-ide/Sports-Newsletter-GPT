@@ -12,7 +12,18 @@ class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(300))
     title = db.Column(db.String(300))
+    source_name = db.Column(db.String(100))
+    source_priority = db.Column(db.Integer)
+    published_date = db.Column(db.Date)
+    category = db.Column(db.String(100))
+    country = db.Column(db.String(100))
     text = db.Column(db.TEXT, nullable=False)
+
+# A class to store our newsletters after they are sent
+class Newsletter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sent_date = db.Column(db.Date)
+    text = db.Column(db.TEXT)
 
 # A class to store email addressess of mailing list members
 class Email(db.Model):
