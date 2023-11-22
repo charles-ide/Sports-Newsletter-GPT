@@ -11,7 +11,6 @@ import openai
 # TODO: Refactor our prompt engineering into a separate module
 def summarize_text(article_text):
     openai.api_key = os.environ.get("OPENAI_API_KEY")
-    print(article_text)
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
