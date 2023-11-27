@@ -13,11 +13,13 @@ class Story(db.Model):
     url = db.Column(db.String(300))
     title = db.Column(db.String(300))
     source_name = db.Column(db.String(100))
-    source_priority = db.Column(db.Integer)
     published_date = db.Column(db.Date)
     category = db.Column(db.String(100))
     country = db.Column(db.String(100))
     text = db.Column(db.TEXT, nullable=False)
+
+    def __repr__(self):
+        return f"Story(id={self.id}, url='{self.url}', title='{self.title}')"
 
 # A class to store our newsletters after they are sent
 class Newsletter(db.Model):

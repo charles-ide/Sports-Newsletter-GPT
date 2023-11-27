@@ -84,7 +84,7 @@ def send_email(email_text, email_recipients, subject):
 
 if __name__ == "__main__":
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my_database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
    
     email_body = generate_email_body(app)
     mailing_list = query_mailing_list(app)
