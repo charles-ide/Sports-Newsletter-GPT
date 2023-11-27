@@ -33,15 +33,15 @@ def query_mailing_list(app):
 # A function that generates our email body based on saved story text
 # TODO: Break this into functions that return our story body list and that summarize our test
 def generate_email_body(app):    
-    # Query all rows from the Email table
+    # Query all rows for today's date from the Story table
     with app.app_context():
-        stories = Story.query.all()
+        stories = Story.query.filter(Story.published_date == datetime.now().strftime("%Y-%m-%d"))
+        story_body_list = [story.text for story in stories]
+    print("Count of stories: " + str(len(story_body_list)))
     
-    story_body_list = [story.text for story in stories]
-
     text_summary_full = ""
     n=0
-    for story_body in story_body_list: # Rename variables
+    for story_body in story_body_list[0:5]: # Rename variables
         n+=1
         print(str(n) + "\n\n") # To track progress during execution
         text_summary = summarize_text(story_body) + "\n"
@@ -85,6 +85,7 @@ def send_email(email_text, email_recipients, subject):
 if __name__ == "__main__":
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_PATH")
+    db.init_app()
    
     email_body = generate_email_body(app)
     mailing_list = query_mailing_list(app)

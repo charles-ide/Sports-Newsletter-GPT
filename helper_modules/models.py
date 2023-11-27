@@ -10,8 +10,8 @@ db = SQLAlchemy()
 # A class to store news stories
 class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(300))
-    title = db.Column(db.String(300))
+    url = db.Column(db.String(300), unique=True)
+    title = db.Column(db.String(300), unique=True)
     source_name = db.Column(db.String(100))
     published_date = db.Column(db.Date)
     category = db.Column(db.String(100))
@@ -19,7 +19,7 @@ class Story(db.Model):
     text = db.Column(db.TEXT, nullable=False)
 
     def __repr__(self):
-        return f"Story(id={self.id}, url='{self.url}', title='{self.title}')"
+        return f"Story(id={self.id}, url='{self.url}', title='{self.title}', date='{self.published_date}')"
 
 # A class to store our newsletters after they are sent
 class Newsletter(db.Model):
