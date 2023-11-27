@@ -3,3 +3,4 @@ env_file.txt
 gpt-key-pair.pem
 load_env.sh
 json_output.csv
+__pycache__
