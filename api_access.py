@@ -53,7 +53,7 @@ def save_stories_from_api(story_obj_list, app):
             db.session.commit()
 
 # Master function to call API and save stories to database
-def save_stories_from_api(app)
+def call_api_save_stories(app):
     api_call_data = query_news_api()
     print("Queried API")
     story_list = parse_json_to_stories(api_call_data)
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     #with app.app_context():
         #delete_existing_stories(app)
     
-    save_stories_from_api(app)
+    call_api_save_stories(app)
 
 
 
